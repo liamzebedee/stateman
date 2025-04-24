@@ -119,6 +119,8 @@ const Article = () => {
 
 The fastest code is the code that doesn't exist. When you identify the problem you're solving (business logic and state), separate it from the other problem (UI logic and state), you find that they have different optimization criteria. 
 
+UI elements like charts deserve interactivity, which inherently involves functions and state. But there's no reason we need to intermix this with business logic. Business logic is oftentimes really simple and straightforward. 
+
 Rather than jumping to use contexts, why not use a single global variable? Why do we use context? Likewise - rather than invoking methods like `useState`, writing custom async function handlers (`useHook`, `Suspense`), writing leagues of littered control flow which depends on the variables of previous methods - why not just have a single function which runs a bunch of imperative sequential statements? 
 
 I never learnt the answer. But I've been building web applications since JQuery and PHP. And I find I really don't need any of the stuff React offers me except JSX and `useState`/`useHook` for making UI elements really interactive.
@@ -137,9 +139,9 @@ The library follows the ViewController pattern found in most UI systems (Cocoa, 
 
 You define your `Controller` class, which inherits from `Model`.
 
-`Model` has single member variable `state` and a set of methods that mutate it.
+`Model` has single member variable `state`.
 
-The state (`this.state`) is wrapped in a `Proxy`, meaning we can track when there are updates by overriding `get` and `set`. 
+The state (`this.state`) is wrapped in a `Proxy`, meaning we can track when there are mutations by overriding `set`. 
 
 When a mutation happens, the `Proxy` emits an event via an `EventTarget` that we pass into it.
 

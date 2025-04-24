@@ -7,7 +7,7 @@ A demo of a tiny (60 LOC), simple, state management library for React.
 
 I am sick of highly coupling my state management to React. It shouldn't be this way. Ideally, you define your business logic in one place, including web requests to API's and the like, and there is a simple hook which allows you to use it with React.
 
-I don't like all of these bespoke solutions that mention atoms, or require you use special annotations, or look useful but have expensive cloning under the hood, require a compiler, reqiure that you wrap your mutations as boilerplates "actions", that use generators or smart-looking things to make it work. I just want basic javascript.
+I don't like all of these bespoke solutions that mention atoms, or require you use special annotations, require `Context`'s everywhere, look useful but have expensive cloning under the hood, require a compiler, reqiure that you wrap your mutations as boilerplates "actions", that use generators or smart-looking things to make it work. I just want basic javascript.
 
 See [app/stateman/README.md](./app/stateman/README.md) for more.
 

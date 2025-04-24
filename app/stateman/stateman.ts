@@ -64,5 +64,3 @@ export function useController<T extends Model<any>>(ctrl: T): T {
 
     return ctrl$;
 }
-
-

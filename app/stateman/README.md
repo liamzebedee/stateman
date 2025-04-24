@@ -47,10 +47,6 @@ Anti-design areas:
 
 **Bespokeness**. Purposefully, this library does not use generators, it doesn't use async, it doesn't require annotations, it doesn't require defining mutations as their own (e.g. redux actions), it doesn't have its own language (atoms, etc), it doesn't have a special syntax, it's just vanilla JS with vanilla runtime API's.
 
-## Where this design fails.
-
- - 
-
 ## Useful features.
 
 The first thing is singletons. Sometimes, you only need one controller for an application. For example, the user session. This can be defined outside of React components.

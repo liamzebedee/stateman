@@ -1,6 +1,6 @@
 "use client"
-import { TodoListController } from "./stateman/todo_controller";
-import { useController } from "./stateman/stateman";
+import { TodoListController } from "../stateman/todo_controller";
+import { useController } from "../stateman/stateman";
 import { useEffect, useState } from "react";
 
 const TodoList = ({ todoController }: { todoController: TodoListController }) => {

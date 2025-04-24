@@ -3,7 +3,7 @@ import { useController } from "../stateman/stateman";
 import { useEffect, useState, useRef } from "react";
 import { ConvosController } from "../stateman/convos_controller";
 import { UserController } from "../stateman/user_controller";
-
+import Head from "next/head";
 const userController_ = new UserController()
 
 export default function Home() {
@@ -22,6 +22,9 @@ export function LoginView() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <Head>
+                <title>Login to Messenger</title>
+            </Head>
             <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
                 <div>
                     <h2 className="text-center text-3xl font-bold text-gray-900">Sign in</h2>
@@ -103,6 +106,9 @@ export function MessengerView() {
 
     return (
         <div className="flex h-screen bg-gray-100">
+            <Head>
+                <title>Messenger</title>
+            </Head>
             {/* Conversations sidebar */}
             <div className="w-1/4 bg-white border-r">
                 <div className="p-4 border-b">

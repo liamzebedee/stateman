@@ -11,6 +11,7 @@
   "dependencies": {
     "event-target-shim": "^6.0.2",
     "next": "15.3.1",
+    "openai": "^4.96.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

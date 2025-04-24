@@ -62,34 +62,34 @@ export class ConvosController extends Model<ConvosState> {
     }
 
     setSelectedConversation(id: number) {
-        this._state.selectedConversation = id;
+        this.state.selectedConversation = id;
     }
 
     sendMessage(text: string) {
-        const conversation = this._state.conversations.find(
-            c => c.id === this._state.selectedConversation
+        const conversation = this.state.conversations.find(
+            c => c.id === this.state.selectedConversation
         );
 
         if (!conversation) return;
 
         const newMessage: Message = {
-            id: this._state.messages.length,
+            id: this.state.messages.length,
             convoId: conversation.convoId,
             sender: "Me",
             text: text,
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         };
         
-        this._state.messages.push(newMessage);
+        this.state.messages.push(newMessage);
         
         // Update last message in conversation
         conversation.lastMessage = text;
     }
 
     getSelectedConversationMessages(): Message[] {
-        const conversation = this._state.conversations.find(c => c.id === this._state.selectedConversation);
+        const conversation = this.state.conversations.find(c => c.id === this.state.selectedConversation);
         if (!conversation) return [];
         
-        return this._state.messages.filter(message => message.convoId === conversation.convoId);
+        return this.state.messages.filter(message => message.convoId === conversation.convoId);
     }
 }

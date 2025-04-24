@@ -2,6 +2,7 @@
 import { TodoListController } from "../stateman/todo_controller";
 import { useController } from "../stateman/stateman";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const TodoList = ({ todoController }: { todoController: TodoListController }) => {
     return (
@@ -56,6 +57,10 @@ export default function Home() {
 
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+            <Head>
+                <title>Todo List App</title>
+            </Head>
+
             <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
                 <h1 className="text-2xl font-bold">Todo List</h1>
 

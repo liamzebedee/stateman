@@ -1,4 +1,6 @@
 import { Model } from "./stateman";
+import { UserController } from "./user_controller";
+import { AsyncResult } from "./utils";
 
 interface Message {
     id: number;
@@ -19,24 +21,44 @@ interface ConvosState {
     conversations: Conversation[];
     messages: Message[];
     selectedConversation: number;
+
+    convosStatus: AsyncResult<any>;
 }
 
 export class ConvosController extends Model<ConvosState> {
-    constructor() {
-        // Initialize with mock data matching page.tsx
+    private userController: UserController;
+
+    constructor(userController: UserController) {
         super({
             selectedConversation: 0,
             conversations: [
-                { id: 0, convoId: "convo_0", name: "John Doe", lastMessage: "Hey there!" },
-                { id: 1, convoId: "convo_1", name: "Jane Smith", lastMessage: "How are you?" }, 
-                { id: 2, convoId: "convo_2", name: "Bob Wilson", lastMessage: "See you later!" }
             ],
             messages: [
-                { id: 0, convoId: "convo_0", sender: "John Doe", text: "Hey there!", timestamp: "10:00 AM" },
-                { id: 1, convoId: "convo_1", sender: "Me", text: "Hi! How are you?", timestamp: "10:01 AM" },
-                { id: 2, convoId: "convo_2", sender: "Bob Wilson", text: "I'm good, thanks!", timestamp: "10:02 AM" }
-            ]
+            ],
+            convosStatus: {
+                status: "idle",
+                data: null,
+                error: null,
+            },
         });
+
+        this.userController = userController;
+    }
+
+    async loadConversations() {
+        this.state.convosStatus.status = "pending";
+        await new Promise(resolve => setTimeout(resolve, 250));
+        this.state.conversations = [
+            { id: 0, convoId: "convo_0", name: "John Doe", lastMessage: "Hey there!" },
+            { id: 1, convoId: "convo_1", name: "Jane Smith", lastMessage: "How are you?" }, 
+            { id: 2, convoId: "convo_2", name: "Bob Wilson", lastMessage: "See you later!" }
+        ]
+        this.state.messages = [
+            { id: 0, convoId: "convo_0", sender: "John Doe", text: "Hey there!", timestamp: "10:00 AM" },
+            { id: 1, convoId: "convo_1", sender: this.userController.getSession().userId, text: "Hi! How are you?", timestamp: "10:01 AM" },
+            { id: 2, convoId: "convo_2", sender: "Bob Wilson", text: "I'm good, thanks!", timestamp: "10:02 AM" }
+        ]
+        this.state.convosStatus.status = "success";
     }
 
     setSelectedConversation(id: number) {

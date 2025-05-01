@@ -3,6 +3,10 @@ stateman
 
 A demo of a tiny (60 LOC), simple, state management library for React.
 
+```
+npm i @liamzebedee/stateman.js
+```
+
 ## Design rationale.
 
 I am sick of highly coupling my state management to React. It shouldn't be this way. Ideally, you define your business logic in one place, including web requests to API's and the like, and there is a simple hook which allows you to use it with React.
